@@ -1,0 +1,21 @@
+.card-display-type {
+    font-size: large;
+}
+
+.card-display-amount {
+    font-size: x-large;
+    color: #6639a6;
+    font-weight: bold;
+    float: right;
+}
+
+.card-display {
+    border: 1px solid #6639a6 !important;
+    box-shadow: 5px 5px 5px #dddbdb !important;
+    border-radius: 50px !important;
+    margin-bottom: 15px !important;
+}
+
+.bottom-container {
+    margin-bottom: 50px !important;
+}

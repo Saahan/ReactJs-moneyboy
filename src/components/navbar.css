@@ -1,0 +1,50 @@
+.custom-navbar {
+  border-radius: 100px;
+  box-shadow: 5px 5px 5px #dddbdb;
+  background-color: white;
+  height: 50px;
+}
+
+.navbar-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.nav-logo {
+  position: absolute;
+  padding-top: 5px;
+  padding-left: 20px;
+}
+
+.nav-item {
+  padding: 0px 5px 0px 5px;
+  color: #6639a6;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  color: rgb(201, 87, 201) !important;
+}
+
+.nav-items-responsive {
+  display: none !important;
+}
+
+.nav-item-responsive {
+    color: #6639a6;
+    margin-left: 30px;
+}
+
+.menu-container-responsive {
+margin-top: 30px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .nav-items {
+    display: none !important;
+  }
+
+  .nav-items-responsive {
+    display: inherit !important;
+  }
+}
