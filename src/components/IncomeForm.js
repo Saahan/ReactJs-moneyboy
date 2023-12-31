@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -8,44 +8,26 @@ import "./transaction.css";
 
 export default function IncomeForm(props) {
   const [show, setShow] = useState(false);
-  const [incomeData, setIncomeData] = useState({
-    amount: 0,
-    date: "",
-    type: "",
-    notes: "",
-  });
-
-  const isMounted = useRef(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIncomeData(() => {
-      return {
+
+    fetch("http://localhost:5000/api/income", {
+      method: "POST",
+      body: JSON.stringify({
         amount: e.target[0].value,
         date: e.target[1].value,
         type: e.target[2].value,
         notes: e.target[3].value,
-      };
-    });
+      }),
+      headers: { "Content-Type": "application/json" },
+    }).then(props.runMainUseEffect("Transaction"));
+
     setShow(false);
   }
-
-  useEffect(() => {
-    if (isMounted.current) {
-      console.log("useffect run", incomeData);
-
-      fetch("http://localhost:5000/api/income", {
-        method: "POST",
-        body: JSON.stringify(incomeData),
-        headers: { "Content-Type": "application/json" },
-      });
-    } else isMounted.current = true;
-
-    props.runMainUseEffect();
-  }, [incomeData]);
 
   return (
     <>
@@ -68,11 +50,13 @@ export default function IncomeForm(props) {
           <Container>
             <Form onSubmit={handleSubmit}>
               <div className="form-inputs">
-                <FloatingLabel
-                  label="Amount"
-                  className="mb-3"
-                >
-                  <Form.Control type="number" placeholder="$" required id="income-amount"/>
+                <FloatingLabel label="Amount" className="mb-3">
+                  <Form.Control
+                    type="number"
+                    placeholder="$"
+                    required
+                    id="income-amount"
+                  />
                 </FloatingLabel>
               </div>
               <div className="form-inputs">
@@ -93,10 +77,7 @@ export default function IncomeForm(props) {
                 </FloatingLabel>
               </div>
               <div className="form-inputs">
-                <FloatingLabel
-                  label="Notes"
-                  className="mb-3"
-                >
+                <FloatingLabel label="Notes" className="mb-3">
                   <Form.Control
                     type="text"
                     id="income-notes"

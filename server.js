@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 var cors = require("cors");
 const { ObjectId } = require("mongodb");
+require("dotenv").config();
 
 const app = express();
 
@@ -16,9 +17,7 @@ const port = 5000;
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(
-    "mongodb+srv://admin-saahan:admin@cluster0.worg8xy.mongodb.net/financeDB"
-  );
+  await mongoose.connect(process.env.REACT_APP_MONGODBURL);
 }
 
 const financeSchema = new mongoose.Schema({
@@ -68,13 +67,17 @@ app.get("/api/income", (req, res) => {
 app.delete("/api/expenses", (req, res) => {
   let deleteDataId = req.body.id;
   //console.log("fetch delete done", deleteDataId);
-  expenses.deleteOne({_id: new ObjectId(deleteDataId)}).then(console.log("deleted"));
+  expenses
+    .deleteOne({ _id: new ObjectId(deleteDataId) })
+    .then(console.log("deleted"));
 });
 
 app.delete("/api/income", (req, res) => {
   let deleteDataId = req.body.id;
   //console.log("fetch delete done", deleteDataId);
-  incomes.deleteOne({_id: new ObjectId(deleteDataId)}).then(console.log("deleted"));
+  incomes
+    .deleteOne({ _id: new ObjectId(deleteDataId) })
+    .then(console.log("deleted"));
 });
 
 app.listen(port, () => {

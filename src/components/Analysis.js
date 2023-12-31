@@ -1,12 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import "./analysis.css";
 
 export default function Analysis(props) {
@@ -24,6 +18,7 @@ export default function Analysis(props) {
   }
 
   function totalByType(array, type) {
+    // eslint-disable-next-line
     let filteredArray = array.filter((item) => {
       if (item.type === type) return item;
     });

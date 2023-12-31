@@ -4,27 +4,27 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import Analysis from "./Analysis";
 import AddTransaction from "./AddTransaction";
+import ReactLoading from "react-loading";
 
 export default function Main() {
   const [displayPage, setDisplayPage] = useState("Dashboard");
-  const [expenseData, setExpenseData] = useState([]);
-  const [incomeData, setIncomeData] = useState([]);
+  const [expenseData, setExpenseData] = useState(null);
+  const [incomeData, setIncomeData] = useState(null);
   const [runMainFetch, setRunMainFetch] = useState(false);
-
-  const [expenseRender, setExpenseRender] = useState(false);
-  const [incomeRender, setIncomeRender] = useState(false);
 
   function passData(e) {
     setDisplayPage(e);
   }
 
-  function runMainUseEffect() {
-    if (runMainFetch === false) setRunMainFetch(true);
-    else if (runMainFetch === true) setRunMainFetch(false);
+  function runMainUseEffect(view) {
+    console.log(view, "runmainuseffect run");
+    setRunMainFetch(true);
+    setTimeout(() => {
+      setRunMainFetch(false);
+    }, 1000);
   }
 
-  function fetchExpenseData() {
-    setExpenseRender(false);
+  useEffect(() => {
     fetch("http://localhost:5000/api/expenses", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -32,49 +32,65 @@ export default function Main() {
       .then((response) => response.json())
       .then((data) => {
         //console.log(data);
-        setExpenseData(() => {
-          return data;
-        });
-      }).finally(() => {setExpenseRender(true)});
-  }
-
-  function fetchIncomeData() {
-    setIncomeRender(false);
-    fetch("http://localhost:5000/api/income", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        //console.log(data);
-        setIncomeData(() => {
-          return data;
-        });
-      }).finally(() => {setIncomeRender(true)});
-  }
-
-  useEffect(() => {
-    fetchExpenseData();
-    fetchIncomeData();
+        setExpenseData(data);
+      })
+      .then(
+        fetch("http://localhost:5000/api/income", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            //console.log(data);
+            setIncomeData(data);
+          })
+      );
     console.log("main useffect run");
   }, [runMainFetch]);
 
-  return (
-    <div>
-      <NavBar passData={passData} />
-      {displayPage === "Dashboard" && expenseRender === true && incomeRender === true && (
-        <Home expenseData={expenseData} incomeData={incomeData} />
-      )}
-      {displayPage === "Analysis" && expenseRender === true && incomeRender === true && (
-        <Analysis expenseData={expenseData} incomeData={incomeData} />
-      )}
-      {displayPage === "Transaction" && (
-        <AddTransaction
-          expenseData={expenseData}
-          incomeData={incomeData}
-          runMainUseEffect={runMainUseEffect}
-        />
-      )}
-    </div>
-  );
+  // eslint-disable-next-line
+  switch (displayPage) {
+    case "Dashboard":
+      return (
+        <div>
+          <NavBar passData={passData} />
+          {expenseData !== null && incomeData !== null ? (
+            <Home expenseData={expenseData} incomeData={incomeData} />
+          ) : (
+            <ReactLoading type="bars" color="darkblue" className="loading" />
+          )}
+        </div>
+      );
+
+    case "Analysis":
+      return (
+        <div>
+          <NavBar passData={passData} />
+          {expenseData !== null && incomeData !== null ? (
+            <Analysis expenseData={expenseData} incomeData={incomeData} />
+          ) : (
+            <ReactLoading type="bars" color="darkblue" className="loading" />
+          )}
+        </div>
+      );
+
+    case "Transaction":
+      return (
+        <div>
+          <NavBar passData={passData} />{" "}
+          {expenseData !== null && incomeData !== null ? (
+            <AddTransaction
+              expenseData={expenseData}
+              incomeData={incomeData}
+              runMainUseEffect={runMainUseEffect}
+            />
+          ) : (
+            <ReactLoading type="bars" color="darkblue" className="loading" />
+          )}
+        </div>
+      );
+
+    default:
+      return <ReactLoading type="bars" color="darkblue" className="loading" />;
+  }
 }

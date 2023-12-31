@@ -1,31 +1,17 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import "./expense-income-display.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function ExpenseDisplay(props) {
-  const [deleteDataId, setDeleteDataId] = useState({});
-
-  const isMounted = useRef(false);
-
   function deleteClick(id) {
-    setDeleteDataId(() => {
-      return { id: id };
-    });
+    fetch("http://localhost:5000/api/expenses", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: id }),
+    }).then(props.runMainUseEffect("Transaction"));
   }
-
-  useEffect(() => {
-    if (isMounted.current) {
-      fetch("http://localhost:5000/api/expenses", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(deleteDataId),
-      }).then(props.runMainUseEffect());
-    } else isMounted.current = true;
-
-    props.runMainUseEffect();
-  }, [deleteDataId]);
 
   return (
     <>
