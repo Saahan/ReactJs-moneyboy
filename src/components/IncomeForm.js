@@ -16,7 +16,7 @@ export default function IncomeForm(props) {
     //make a POST request to send "add income" data obtained from forms to the backend to be saved in the database.
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/income", {
+    fetch("https://moneyboy-api.onrender.com/api/income", {
       method: "POST",
       body: JSON.stringify({
         amount: e.target[0].value,

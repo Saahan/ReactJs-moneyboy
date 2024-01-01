@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function IncomeDisplay(props) {
   function deleteClick(id) {
     //function which makes a DELETE request to the back-end to delete an income object in the database, id is passed down from the onClick handler down in the array.map return statement.
-    fetch("http://localhost:5000/api/deleteincome", {
+    fetch("https://moneyboy-api.onrender.com/api/deleteincome", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: id }),

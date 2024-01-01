@@ -28,7 +28,7 @@ export default function Main() {
 
   useEffect(() => {
     // fetch requests to GET expense and income data from the database, this is triggered on start and on refresh during a POST/DELETE operation
-    fetch("http://localhost:5000/api/expenses", {
+    fetch("https://moneyboy-api.onrender.com/api/expenses", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -38,7 +38,7 @@ export default function Main() {
         console.log("expsnse data:", data); //data logging
       })
       .then(
-        fetch("http://localhost:5000/api/income", {
+        fetch("https://moneyboy-api.onrender.com/api/income", {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         })

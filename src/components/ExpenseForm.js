@@ -16,7 +16,7 @@ export default function ExpenseForm(props) {
     //make a POST request to send "add expense" data obtained from forms to the backend to be saved in the database.
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/expenses", {
+    fetch("https://moneyboy-api.onrender.com/api/expenses", {
       method: "POST",
       body: JSON.stringify({
         amount: e.target[0].value,
