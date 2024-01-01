@@ -103,9 +103,9 @@ export default function Home(props) {
           <Col lg="3" sm="6">
             <Card className="card-display">
               <Card.Body className="card-display-body">
-                <span className="card-display-type">Transportation</span>{" "}
+                <span className="card-display-type">Transport</span>{" "}
                 <span className="card-display-amount">
-                  ${totalByType(expenseData, "Transportation")}
+                  ${totalByType(expenseData, "Transport")}
                 </span>
               </Card.Body>
             </Card>
@@ -123,9 +123,9 @@ export default function Home(props) {
           <Col lg="3" sm="6">
             <Card className="card-display">
               <Card.Body className="card-display-body">
-                <span className="card-display-type">Medical</span>{" "}
+                <span className="card-display-type">Other</span>{" "}
                 <span className="card-display-amount">
-                  ${totalByType(expenseData, "Medical")}
+                  ${totalByType(expenseData, "Other")}
                 </span>
               </Card.Body>
             </Card>
@@ -163,9 +163,9 @@ export default function Home(props) {
           <Col lg="4" sm="12">
             <Card className="card-display">
               <Card.Body className="card-display-body">
-                <span className="card-display-type">Miscellaneous</span>{" "}
+                <span className="card-display-type">Other</span>{" "}
                 <span className="card-display-amount">
-                  ${totalByType(incomeData, "Miscellaneous")}
+                  ${totalByType(incomeData, "Other")}
                 </span>
               </Card.Body>
             </Card>

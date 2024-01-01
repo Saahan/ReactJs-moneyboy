@@ -21,7 +21,7 @@ export default function Main() {
     setRunMainFetch(true);
     setTimeout(() => {
       setRunMainFetch(false);
-    }, 1000);
+    }, 2000);
   }
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Main() {
           .then((data) => {
             //console.log(data);
             setIncomeData(data);
-            console.log("Income data",data);
+            console.log("Income data", data);
           })
       );
     console.log("main useffect run");

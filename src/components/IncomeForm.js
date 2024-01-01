@@ -72,7 +72,7 @@ export default function IncomeForm(props) {
                   >
                     <option value="Salary">Salary</option>
                     <option value="Returns">Tax Returns</option>
-                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="Other">Other</option>
                   </Form.Select>
                 </FloatingLabel>
               </div>

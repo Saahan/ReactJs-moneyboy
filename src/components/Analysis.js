@@ -29,11 +29,11 @@ export default function Analysis(props) {
   let chartExpenseData = [
     { amount: totalByType(expenseData, "Food"), type: "Food" },
     {
-      amount: totalByType(expenseData, "Transportation"),
-      type: "Transportation",
+      amount: totalByType(expenseData, "Transport"),
+      type: "Transport",
     },
     { amount: totalByType(expenseData, "Rent"), type: "Rent" },
-    { amount: totalByType(expenseData, "Medical"), type: "Medical" },
+    { amount: totalByType(expenseData, "Other"), type: "Other" },
   ];
 
   let chartIncomeData = [
@@ -42,7 +42,7 @@ export default function Analysis(props) {
       amount: totalByType(incomeData, "Returns"),
       type: "Returns",
     },
-    { amount: totalByType(incomeData, "Miscellaneous"), type: "Miscellaneous" },
+    { amount: totalByType(incomeData, "Other"), type: "Other" },
   ];
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];

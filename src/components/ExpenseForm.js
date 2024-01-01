@@ -71,9 +71,9 @@ export default function ExpenseForm(props) {
                     className="form-select"
                   >
                     <option value="Food">Food</option>
-                    <option value="Transportation">Transportation</option>
+                    <option value="Transport">Transport</option>
                     <option value="Rent">Rent</option>
-                    <option value="Medical">Medical</option>
+                    <option value="Other">Other</option>
                   </Form.Select>
                 </FloatingLabel>
               </div>
