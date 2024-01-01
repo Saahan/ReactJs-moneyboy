@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(cors()); //enable Access-Control-Origin from all sources using cors package
 
-const port = 5000;
+const port = process.env.port || 5000;
 
 main().catch((err) => console.log(err));
 
