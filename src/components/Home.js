@@ -2,45 +2,20 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import "./dashboard.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  totalAmount,
+  totalByType,
+  filterArrayByThisMonth,
+} from "../functions/arrayOperations";
 
 export default function Home(props) {
   let expenseData = props.expenseData;
   let incomeData = props.incomeData;
 
-  //console.log(incomeData);
-
-  function totalAmount(array) {
-    let sum = 0;
-
-    array.forEach((element) => {
-      sum = sum + element.amount;
-    });
-
-    return sum;
-  }
-
-  function totalByType(array, type) {
-    // eslint-disable-next-line
-    let filteredArray = array.filter((item) => {
-      if (item.type === type) return item;
-    });
-
-    return totalAmount(filteredArray);
-  }
-
-  function filterArrayByThisMonth(array) {
-    let currentMonth = new Date().getMonth();
-    // eslint-disable-next-line
-    let filteredArray = array.filter((item) => {
-      if (new Date(Date.parse(item.date)).getMonth() === currentMonth)
-        return item;
-    });
-
-    return filteredArray;
-  }
-
   return (
+    //render the expense and income objects in terms of numbers which are calculated as per functions described in arrayOperations.js file.
+    //They basically calculate totals from array, filter array by expense type, and filter arrays by month.
+    //I used bootstrap cards to organize data in Rows and Cols which provide responsive behaviour from bootstrap.
     <>
       <Container>
         <div className="expense-data-container">

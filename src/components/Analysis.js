@@ -2,29 +2,11 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import "./analysis.css";
+import { totalByType } from "../functions/arrayOperations";
 
 export default function Analysis(props) {
   let expenseData = props.expenseData;
   let incomeData = props.incomeData;
-
-  function totalAmount(array) {
-    let sum = 0;
-
-    array.forEach((element) => {
-      sum = sum + element.amount;
-    });
-
-    return sum;
-  }
-
-  function totalByType(array, type) {
-    // eslint-disable-next-line
-    let filteredArray = array.filter((item) => {
-      if (item.type === type) return item;
-    });
-
-    return totalAmount(filteredArray);
-  }
 
   let chartExpenseData = [
     { amount: totalByType(expenseData, "Food"), type: "Food" },

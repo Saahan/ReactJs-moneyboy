@@ -21,6 +21,7 @@ async function main() {
 }
 
 const financeSchema = new mongoose.Schema({
+  //define a Schema for database objects
   amount: Number,
   date: String,
   type: String,
@@ -31,6 +32,7 @@ const expenses = mongoose.model("expenses", financeSchema);
 const incomes = mongoose.model("incomes", financeSchema);
 
 app.post("/api/expenses", (req, res) => {
+  //save expense data coming from the front end forms to database
   let expenseData = req.body;
 
   let expenseObj = new expenses({
@@ -44,6 +46,7 @@ app.post("/api/expenses", (req, res) => {
 });
 
 app.post("/api/income", (req, res) => {
+  //save income data coming from the front end forms to database
   let incomeData = req.body;
 
   let incomeObj = new incomes({
@@ -57,15 +60,15 @@ app.post("/api/income", (req, res) => {
 });
 
 app.get("/api/expenses", (req, res) => {
-  expenses.find({}).then((query) => res.send(query));
+  expenses.find({}).then((query) => res.send(query)); //get expense data from the database
 });
 
 app.get("/api/income", (req, res) => {
-  incomes.find({}).then((query) => res.send(query));
+  incomes.find({}).then((query) => res.send(query)); //get income data from the database
 });
 
 app.delete("/api/deleteexpenses", (req, res) => {
-  let deleteDataId = req.body.id;
+  let deleteDataId = req.body.id; //delete data in database for a specific ID
   //console.log("fetch delete done", deleteDataId);
   expenses
     .deleteOne({ _id: new ObjectId(deleteDataId) })
@@ -73,7 +76,7 @@ app.delete("/api/deleteexpenses", (req, res) => {
 });
 
 app.delete("/api/deleteincome", (req, res) => {
-  let deleteDataId = req.body.id;
+  let deleteDataId = req.body.id; //delete data in database for a specific ID
   //console.log("fetch delete done", deleteDataId);
   incomes
     .deleteOne({ _id: new ObjectId(deleteDataId) })

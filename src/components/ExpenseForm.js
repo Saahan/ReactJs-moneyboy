@@ -13,6 +13,7 @@ export default function ExpenseForm(props) {
   const handleShow = () => setShow(true);
 
   function handleSubmit(e) {
+    //make a POST request to send "add expense" data obtained from forms to the backend to be saved in the database.
     e.preventDefault();
 
     fetch("http://localhost:5000/api/expenses", {
@@ -24,7 +25,7 @@ export default function ExpenseForm(props) {
         notes: e.target[3].value,
       }),
       headers: { "Content-Type": "application/json" },
-    }).then(props.runMainUseEffect());
+    }).then(props.runMainUseEffect()); //refresh props by making a GET request in the Main.js component
 
     setShow(false);
   }

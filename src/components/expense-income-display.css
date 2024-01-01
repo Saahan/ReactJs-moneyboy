@@ -1,10 +1,11 @@
+/* expense display styles*/
 .expense-data-container {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .expense-display-div {
-    display: inline-block;
-    margin: 0px 20px 20px 20px;
+  display: inline-block;
+  margin: 0px 20px 20px 20px;
 }
 
 .expense-display-card {
@@ -21,6 +22,13 @@
   color: red !important;
   margin-bottom: 20px !important;
 }
+
+.btn-delete:hover {
+  cursor: pointer;
+  fill: lightgray;
+}
+
+/* income display styles*/
 
 .card-income-title {
   font-size: x-large !important;
@@ -46,7 +54,9 @@
   color: white !important;
 }
 
-@media only screen and (max-width: 430px) {           
+/* media queries */
+
+@media only screen and (max-width: 430px) {
   .expense-display-card {
     width: 8rem !important;
   }

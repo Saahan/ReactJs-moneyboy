@@ -12,6 +12,7 @@ export default function NavBar(props) {
   const handleShow = () => setShow(true);
 
   function handleClick(e) {
+    //pass data to Main.js component to set the view of the page there, defaulted to "Dashboard"
     setDisplay(() => e.target.outerText);
     setShow(false);
   }

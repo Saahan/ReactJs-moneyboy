@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function ExpenseDisplay(props) {
   function deleteClick(id) {
+    //function which makes a DELETE request to the back-end to delete an expense object in the database, id is passed down from the onClick handler down in the array.map return statement.
     fetch("http://localhost:5000/api/deleteexpenses", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -46,7 +47,7 @@ export default function ExpenseDisplay(props) {
                     width="16"
                     height="16"
                     fill="white"
-                    className="bi bi-trash3-fill"
+                    className="bi bi-trash3-fill btn-delete"
                     viewBox="0 0 16 16"
                     onClick={() => {
                       deleteClick(item._id);
