@@ -6,11 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function IncomeDisplay(props) {
   function deleteClick(id) {
-    fetch("http://localhost:5000/api/income", {
+    fetch("http://localhost:5000/api/deleteincome", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: id }),
-    }).then(props.runMainUseEffect("Transaction"));
+    }).finally(props.runMainUseEffect());
   }
 
   return (

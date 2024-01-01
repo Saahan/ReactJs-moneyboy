@@ -24,7 +24,7 @@ export default function IncomeForm(props) {
         notes: e.target[3].value,
       }),
       headers: { "Content-Type": "application/json" },
-    }).then(props.runMainUseEffect("Transaction"));
+    }).then(props.runMainUseEffect());
 
     setShow(false);
   }

@@ -64,7 +64,7 @@ app.get("/api/income", (req, res) => {
   incomes.find({}).then((query) => res.send(query));
 });
 
-app.delete("/api/expenses", (req, res) => {
+app.delete("/api/deleteexpenses", (req, res) => {
   let deleteDataId = req.body.id;
   //console.log("fetch delete done", deleteDataId);
   expenses
@@ -72,7 +72,7 @@ app.delete("/api/expenses", (req, res) => {
     .then(console.log("deleted"));
 });
 
-app.delete("/api/income", (req, res) => {
+app.delete("/api/deleteincome", (req, res) => {
   let deleteDataId = req.body.id;
   //console.log("fetch delete done", deleteDataId);
   incomes

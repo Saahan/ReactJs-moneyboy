@@ -33,6 +33,7 @@ export default function Main() {
       .then((data) => {
         //console.log(data);
         setExpenseData(data);
+        console.log("expsnse data:", data);
       })
       .then(
         fetch("http://localhost:5000/api/income", {
@@ -43,6 +44,7 @@ export default function Main() {
           .then((data) => {
             //console.log(data);
             setIncomeData(data);
+            console.log("Income data",data);
           })
       );
     console.log("main useffect run");
